@@ -138,6 +138,24 @@ header {
   background-color: #1a242f;
 }
 
+/* Download Button */
+.download-button {
+  background-color: #e74c3c;  /* Rot */
+  color: #ffffff;  /* Weiß */
+  padding: 10px 20px;  /* Vertikales und horizontales Padding */
+  border: none;  /* Kein Rand */
+  border-radius: 5px;  /* Abgerundete Ecken */
+  font-size: 1rem;  /* Schriftgröße */
+  font-weight: bold;  /* Fettdruck */
+  cursor: pointer;  /* Cursor zum Zeiger ändern */
+  transition: background-color 0.3s ease;  /* Weiche Übergangseffekte */
+  text-decoration: none;  /* Keine Unterstreichung */
+}
+
+.download-button:hover {
+  background-color: #c0392b;  /* Dunkleres Rot beim Überfahren */
+}
+
 /* Input & Label */
 label {
   font-weight: bold;
@@ -199,7 +217,10 @@ input[type="text"] {
   .container p {
     font-size: 14px;
   }
-
+  .download-button {
+    font-size: 0.875rem;  /* Kleinere Schriftgröße für mobile Ansicht */
+    padding: 8px 16px;  /* Verkleinertes Padding für mobile Ansicht */
+  }
   .filter-section label,
   .filter-section input {
     display: block;
@@ -219,6 +240,7 @@ footer {
   padding: 40px 0;
   position: relative;
   width: 100%;
+  line-height: 1.6;
 }
 
 .footer-content {
@@ -248,10 +270,17 @@ footer a {
   letter-spacing: 1px;
 }
 
-footer a:hover {
+footer a:hover,
+footer a:focus {
   color: #ffffff;
   text-decoration: none;
   border-bottom: 2px solid #ffffff;
+}
+
+/* Accessibility: Visual feedback for screen-reader users */
+footer a:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
 @media screen and (max-width: 768px) {
@@ -263,5 +292,192 @@ footer a:hover {
 
   .footer-nav {
     margin-top: 20px;
+  }
+}
+
+/* Cross-browser consistency */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+
+/*Impressum*/
+.Impressum {
+  background-color: #fff;
+  padding: 20px;
+  margin: 4em auto; /* Kombinierte zentrale Ausrichtung und Top-Abstand */
+  border-radius: 8px;
+  max-width: 800px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1); /* Etwas Schatten für die Tiefenwirkung */
+}
+
+.Impressum h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.Impressum h2 {
+  font-size: 1.5em;
+  margin: 20px 0 10px 0; /* Kombinierte Margin Regel */
+  color: #555;
+}
+
+.Impressum h3 {
+  font-size: 1.2em;
+  margin: 10px 0; /* Kombinierte Margin Regel */
+  color: #777;
+}
+
+.Impressum p {
+  color: #666;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 768px) {
+  .Impressum {
+    padding: 15px;
+    margin-top: 2em;
+  }
+
+  .Impressum h1 {
+    font-size: 1.75em;
+  }
+
+  .Impressum h2 {
+    font-size: 1.25em;
+  }
+
+  .Impressum h3 {
+    font-size: 1.1em;
+  }
+}
+
+/*Datenschutz*/
+.datenschutz {
+  background-color: #fff;
+  padding: 20px;
+  margin: 4em auto; /* Zentrales Ausrichten und oberen Abstand setzen */
+  border-radius: 8px;
+  max-width: 800px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1); /* Subtiler Schatten für die Tiefenwirkung */
+}
+
+.datenschutz h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #2C3E50; /* Dunklerer Ton für Hauptüberschriften */
+}
+
+.datenschutz h2 {
+  font-size: 1.5em;
+  margin: 20px 0 10px 0; /* Kombinierte Margin-Regel */
+  color: #34495E; /* Mittlerer Ton für Subheadings */
+}
+
+.datenschutz h3 {
+  font-size: 1.2em;
+  margin: 10px 0; /* Kombinierte Margin-Regel */
+  color: #7F8C8D; /* Hellerer Ton für untere Ebene Überschriften */
+}
+
+.datenschutz p {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .datenschutz {
+    padding: 15px;
+    margin-top: 2em;
+  }
+
+  .datenschutz h1 {
+    font-size: 1.75em;
+  }
+
+  .datenschutz h2 {
+    font-size: 1.25em;
+  }
+
+  .datenschutz h3 {
+    font-size: 1.1em;
+  }
+}
+/*Kontakt*/
+
+.kontakt {
+  background-color: #fff;
+  padding: 20px;
+  margin: 4em auto; /* Vertikaler Abstand und automatisches Ausrichten */
+  border-radius: 8px;
+  max-width: 600px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1); 
+}
+
+.kontakt h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #026476; /* Tiefes, ruhiges Blau */
+}
+
+.kontakt form {
+  display: flex;
+  flex-direction: column;
+}
+
+.kontakt label {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  font-weight: 600; /* Etwas Gewicht für die Beschriftungen */
+}
+
+.kontakt input,
+.kontakt textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.kontakt button {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.kontakt button:hover {
+  background-color: #014d5c;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .kontakt {
+    padding: 15px;
+    margin-top: 2em;
+  }
+
+  .kontakt h1 {
+    font-size: 1.75em;
+  }
+
+  .kontakt label {
+    margin-top: 5px;
+  }
+
+  .kontakt input,
+  .kontakt textarea {
+    padding: 8px;
+  }
+
+  .kontakt button {
+    padding: 8px;
   }
 }

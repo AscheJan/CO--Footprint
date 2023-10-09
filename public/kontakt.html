@@ -29,38 +29,24 @@
 
     <!-- Main -->
     <main>
-      <section class="container mt-4">
-        <h1>Übersicht über die CO2-Emissionen</h1>
-        <p>Willkommen beim CO2 Emissionen Dashboard...</p>
-
-        <div class="filter-section">
-          <label for="filterCountry">Land filtern: </label>
-          <input type="text" id="filterCountry" placeholder="Land" />
-
-          <label for="filterCompany">Unternehmen filtern: </label>
-          <input type="text" id="filterCompany" placeholder="Unternehmen" />
-
-          <label for="filterEmission">Emissionen filtern: </label>
-          <input type="number" id="filterEmission" placeholder="Emissionen" />
-
-          <button id="resetButton">Filter zurücksetzen</button>
-        </div>
-        <button class="download-button" id="downloadButton">Daten herunterladen</button>
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th id="sortCountry">Land</th>
-              <th id="sortCompany">Unternehmen</th>
-              <th id="sortEmission">Emission</th>
-            </tr>
-          </thead>
-          <tbody id="dataBody">
-            <!-- Data rows will be added dynamically here -->
-          </tbody>
-        </table>
-      </section>
-    </main>
+        <section class="kontakt mt-4">
+          <h1>Kontaktieren Sie uns</h1>
+          <p>Wir freuen uns von Ihnen zu hören. Bitte füllen Sie das untenstehende Formular aus und wir werden uns so schnell wie möglich mit Ihnen in Verbindung setzen.</p>
+  
+          <form action="path/to/form_handling_script" method="POST" id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+            
+            <label for="email">E-Mail-Adresse:</label>
+            <input type="email" id="email" name="email" required />
+  
+            <label for="message">Nachricht:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+  
+            <button type="submit">Nachricht senden</button>
+          </form>
+        </section>
+      </main>
 
     <!-- Footer -->
     <footer>

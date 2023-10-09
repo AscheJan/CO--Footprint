@@ -150,3 +150,37 @@ function renderTable(data) {
 
 // Rendert die Tabelle mit den Originaldaten beim Laden der Webseite.
 renderTable(data);
+
+
+// Download Filter Button
+// Funktion, die ein Datenobjekt in eine CSV-Zeile konvertiert
+function convertToCSVRow(item) {
+  return `"${item.country}","${item.company}",${item.emission}`;
+}
+
+// Funktion, die den Download der CSV-Datei handhabt
+function downloadCSV() {
+  // Erstellt den CSV-String durch Zusammenführen der Datenzeilen,
+  // getrennt durch Zeilenumbrüche
+  const csvContent =
+    "Land,Unternehmen,Emission\n" +
+    filteredData.map(convertToCSVRow).join("\n");
+
+  // Erstellt einen Blob aus dem CSV-String
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  
+  // Erstellt einen Link-Element und setzt es auf den Blob und gibt ihm einen Dateinamen
+  const link = document.createElement("a");
+  const url = URL.createObjectURL(blob);
+  link.setAttribute("href", url);
+  link.setAttribute("download", "emissionsdaten.csv");
+  
+  // Löst den Download aus und räumt auf
+  link.style.visibility = "hidden";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+// Fügt einen Click-Event-Listener zum Download-Button hinzu, der downloadCSV aufruft, wenn geklickt wird.
+document.getElementById("downloadButton").addEventListener("click", downloadCSV);
