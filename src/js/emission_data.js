@@ -1,16 +1,23 @@
+// Iteriert durch das Array ["Country", "Company", "Emission"] und für jeden Typ...
 ["Country", "Company", "Emission"].forEach((type) => {
+  // ... fügt es einen Click-Event-Listener zu dem entsprechenden Sortierbutton hinzu...
   document
     .getElementById(`sort${type}`)
     .addEventListener("click", () => handleSort(type.toLowerCase()));
 });
 
+// Iteriert durch das Array ["filterCountry", "filterCompany", "filterEmission"] und für jeden Typ...
 ["filterCountry", "filterCompany", "filterEmission"].forEach((type) => {
+  // ... fügt es einen Input-Event-Listener hinzu, der handleFilter aufruft, wenn sich der Eingabewert ändert.
   document.getElementById(type).addEventListener("input", handleFilter);
 });
 
+// Fügt einen Click-Event-Listener zum Zurücksetzen-Button hinzu, der resetFilters aufruft, wenn geklickt wird.
 document.getElementById("resetButton").addEventListener("click", resetFilters);
 
+// Definiert ein Daten-Array, das Objekte mit den Attributen country, company und emission enthält.
 const data = [
+  //Datenobjekte
   { country: "Deutschland", company: "Unternehmen A", emission: 100 },
   { country: "USA", company: "Unternehmen B", emission: 150 },
   { country: "Kanada", company: "Unternehmen C", emission: 120 },
@@ -40,58 +47,97 @@ const data = [
 ];
 
 let filteredData = [...data];
+// Funktion zum Zurücksetzen der Filter
 function resetFilters() {
+  // Setzt den Wert des Länderfilters zurück
   document.getElementById("filterCountry").value = "";
+  // Setzt den Wert des Unternehmensfilters zurück
   document.getElementById("filterCompany").value = "";
+  // Setzt den Wert des Emissionsfilters zurück
   document.getElementById("filterEmission").value = "";
 
-  filteredData = [...data]; // Set filteredData back to the original data
-  renderTable(data); // Rerender the table with the original data
+  // Setzt filteredData zurück auf die Originaldaten
+  filteredData = [...data];
+  // Zeichnet die Tabelle mit den Originaldaten neu
+  renderTable(data);
 }
+
+// Funktion zur Handhabung der Filterung
 function handleFilter() {
+  // Holt den Wert des Länderfilters und konvertiert ihn in Kleinbuchstaben,
+  // um eine nicht case-sensitive Suche zu ermöglichen
   const filterCountry = document
     .getElementById("filterCountry")
     .value.toLowerCase();
+  // Holt den Wert des Unternehmensfilters und konvertiert ihn in Kleinbuchstaben,
+  // um eine nicht case-sensitive Suche zu ermöglichen
   const filterCompany = document
     .getElementById("filterCompany")
     .value.toLowerCase();
+  // Holt den Wert des Emissionsfilters ohne Konvertierung,
+  // da wir eine numerische Filterung vornehmen
   const filterEmission = document.getElementById("filterEmission").value;
 
+  // Setzt filteredData gleich einem gefilterten Datensatz, basierend auf den eingestellten Filtern
   filteredData = data.filter(
     (item) =>
+      // Überprüft, ob der Ländername den Filterstring enthält
       item.country.toLowerCase().includes(filterCountry) &&
+      // Überprüft, ob der Unternehmensname den Filterstring enthält
       item.company.toLowerCase().includes(filterCompany) &&
-      (!filterEmission || item.emission <= Number(filterEmission)) // Convert filterEmission to Number
+      // Überprüft, ob die Emission kleiner oder gleich dem Filterwert ist
+      // Wenn kein Emissionsfilter gesetzt ist, wird dieser Bedingungsteil ignoriert
+      (!filterEmission || item.emission <= Number(filterEmission)) // Konvertiert filterEmission in eine Zahl
   );
 
+  // Zeichnet die Tabelle mit den gefilterten Daten neu
   renderTable(filteredData);
 }
 
+// Definiert eine Variable, um den Sortierstatus (aufsteigend/absteigend) zu speichern.
 let isAscending = true;
 
+// Definiert eine Funktion zum Sortieren des 'filteredData' Arrays basierend auf einem bestimmten Schlüssel.
 function handleSort(key) {
+  // Sortiert 'filteredData'...
   filteredData.sort((a, b) => {
+    // ...alphabetisch, wenn der Wert eine Zeichenkette ist.
     if (typeof a[key] === "string") {
       return isAscending
-        ? a[key].localeCompare(b[key])
+        ? // Vergleicht zwei Zeichenketten und sortiert sie lexikographisch in auf- oder absteigender Reihenfolge basierend auf 'isAscending'.
+          a[key].localeCompare(b[key])
         : b[key].localeCompare(a[key]);
     }
-    return isAscending ? a[key] - b[key] : b[key] - a[key];
+    // ...numerisch, wenn der Wert eine Zahl ist.
+    return isAscending
+      ? a[key] - b[key] // Für aufsteigende Reihenfolge.
+      : b[key] - a[key]; // Für absteigende Reihenfolge.
   });
+  // Kehrt den Wert von 'isAscending' um, um bei der nächsten Sortierung die Reihenfolge zu ändern.
   isAscending = !isAscending;
+  // Rendert die Tabelle nach dem Sortieren neu.
   renderTable(filteredData);
 }
 
+// Definiert eine Funktion zum Umwandeln von potenziell unsicherem Text in sicher, darstellbaren HTML.
 function escapeHtml(str) {
+  // Erstellt ein 'div'-Element.
   const div = document.createElement("div");
+  // Fügt dem 'div' eine Textknoten mit dem zu sichernden Text hinzu.
   div.appendChild(document.createTextNode(str));
+  // Gibt die sicheren HTML-Inhalte zurück.
   return div.innerHTML;
 }
 
+// Definiert eine Funktion zum Rendern der Daten als Tabelle im HTML.
 function renderTable(data) {
+  // Ruft das Tabellenkörper-Element aus dem HTML ab.
   const tableBody = document.getElementById("dataBody");
+  // Setzt den Inhalt des Tabellenkörpers zurück.
   tableBody.innerHTML = "";
+  // Iteriert durch jedes Datenobjekt...
   data.forEach((item) => {
+    // ... und fügt eine neue Zeile zum Tabellenkörper hinzu. Verwendet 'escapeHtml' zur Sicherung des Textes.
     tableBody.innerHTML += `
             <tr>
                 <td>${escapeHtml(item.country)}</td>
@@ -102,4 +148,5 @@ function renderTable(data) {
   });
 }
 
+// Rendert die Tabelle mit den Originaldaten beim Laden der Webseite.
 renderTable(data);
