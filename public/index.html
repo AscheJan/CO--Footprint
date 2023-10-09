@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CO2 Emissionen Dashboard</title>
+    <link rel="icon" href="path/to/favicon.ico" />
+    <link rel="stylesheet" href="../src/css/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo-container">
+          <a href="#" class="navbar-brand">
+            <img src="../src/img/logo.png" alt="Logo" class="logo" />
+          </a>
+        </div>
+        <h1 class="site-title">CO<sub>2</sub> Emissionen</h1>
+        <div class="menu-container" id="navbarNav">
+          <ul class="navbar-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Über Uns</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <main>
+      <section class="container mt-4">
+        <h1>Übersicht über die CO2-Emissionen</h1>
+        <p>Willkommen beim CO2 Emissionen Dashboard...</p>
+
+        <div class="filter-section">
+          <label for="filterCountry">Land filtern: </label>
+          <input type="text" id="filterCountry" placeholder="Land" />
+
+          <label for="filterCompany">Unternehmen filtern: </label>
+          <input type="text" id="filterCompany" placeholder="Unternehmen" />
+
+          <label for="filterEmission">Emissionen filtern: </label>
+          <input type="number" id="filterEmission" placeholder="Emissionen" />
+
+          <button id="resetButton">Filter zurücksetzen</button>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th id="sortCountry">Land</th>
+              <th id="sortCompany">Unternehmen</th>
+              <th id="sortEmission">Emission</th>
+            </tr>
+          </thead>
+          <tbody id="dataBody">
+            <!-- Data rows will be added dynamically here -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2023 CO2 Emissionen Dashboard</p>
+        <nav class="footer-nav">
+          <a href="privacy.html">Datenschutzerklärung</a>
+          <a href="imprint.html">Impressum</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="../src/js/emission_data.js"></script>
+  </body>
+</html>

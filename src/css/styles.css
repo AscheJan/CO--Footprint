@@ -1,0 +1,267 @@
+/* Allgemeines Design */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+/* Header */
+header {
+  background-color: #2c3e50;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5%;
+  color: #ecf0f1;
+}
+
+.navbar-brand img.logo {
+  max-height: 50px;
+}
+
+.site-title {
+  color: #fff;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+/* Navigation-Menu */
+.navbar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-menu li {
+  list-style-type: none;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu a:hover {
+  color: #bdc3c7;
+}
+
+/* Responsive Design für den Header*/
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .navbar-brand,
+  .menu-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .site-title {
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-menu {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar-menu li {
+    padding: 5px 10px;
+  }
+
+  .navbar-menu a {
+    font-size: 0.9rem;
+  }
+}
+
+/*Main*/
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Überschriften */
+.container h1 {
+  color: #2c3e50;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Paragrafen */
+.container p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Filter Section */
+.filter-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-section label,
+.filter-section input {
+  display: inline-block;
+  margin: 0 10px;
+}
+#resetButton {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#resetButton:hover {
+  background-color: #1a242f;
+}
+
+/* Input & Label */
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-right: 10px;
+}
+
+/* Tabelle */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table thead th {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.table td,
+.table th {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+/* Responsive Design */
+@media only screen and (max-width: 1024px) {
+  /* Für Tablets */
+  .container h1,
+  .container p {
+    font-size: 18px;
+  }
+
+  input[type="text"] {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* Für Mobile Phones */
+  .container h1 {
+    font-size: 20px;
+  }
+
+  .container p {
+    font-size: 14px;
+  }
+
+  .filter-section label,
+  .filter-section input {
+    display: block;
+    margin: 10px auto;
+  }
+
+  .table td,
+  .table th {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+/* Footer */
+footer {
+  background-color: #2c3e50;
+  color: #ffffff;
+  padding: 40px 0;
+  position: relative;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+}
+
+footer a {
+  color: #a9ccf1;
+  transition: color 0.3s ease-in-out;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+footer a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 2px solid #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-nav {
+    margin-top: 20px;
+  }
+}
