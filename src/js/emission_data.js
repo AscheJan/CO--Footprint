@@ -1,14 +1,15 @@
-// Iteriert durch das Array ["Country", "Company", "Emission"] und für jeden Typ...
+/*------------------------------------------*/
+// Iteriert durch das Array ["Country", "Company", "Emission"] und für jeden Typ
 ["Country", "Company", "Emission"].forEach((type) => {
-  // ... fügt es einen Click-Event-Listener zu dem entsprechenden Sortierbutton hinzu...
+  //fügt es einen Click-Event-Listener zu dem entsprechenden Sortierbutton hinzu.
   document
     .getElementById(`sort${type}`)
     .addEventListener("click", () => handleSort(type.toLowerCase()));
 });
 
-// Iteriert durch das Array ["filterCountry", "filterCompany", "filterEmission"] und für jeden Typ...
+// Iteriert durch das Array ["filterCountry", "filterCompany", "filterEmission"] und für jeden Typ
 ["filterCountry", "filterCompany", "filterEmission"].forEach((type) => {
-  // ... fügt es einen Input-Event-Listener hinzu, der handleFilter aufruft, wenn sich der Eingabewert ändert.
+  // fügt es einen Input-Event-Listener hinzu, der handleFilter aufruft, wenn sich der Eingabewert ändert.
   document.getElementById(type).addEventListener("input", handleFilter);
 });
 
@@ -151,7 +152,7 @@ function renderTable(data) {
 // Rendert die Tabelle mit den Originaldaten beim Laden der Webseite.
 renderTable(data);
 
-
+/*------------------------------------------*/
 // Download Filter Button
 // Funktion, die ein Datenobjekt in eine CSV-Zeile konvertiert
 function convertToCSVRow(item) {
@@ -168,13 +169,13 @@ function downloadCSV() {
 
   // Erstellt einen Blob aus dem CSV-String
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  
+
   // Erstellt einen Link-Element und setzt es auf den Blob und gibt ihm einen Dateinamen
   const link = document.createElement("a");
   const url = URL.createObjectURL(blob);
   link.setAttribute("href", url);
   link.setAttribute("download", "emissionsdaten.csv");
-  
+
   // Löst den Download aus und räumt auf
   link.style.visibility = "hidden";
   document.body.appendChild(link);
@@ -183,4 +184,51 @@ function downloadCSV() {
 }
 
 // Fügt einen Click-Event-Listener zum Download-Button hinzu, der downloadCSV aufruft, wenn geklickt wird.
-document.getElementById("downloadButton").addEventListener("click", downloadCSV);
+document
+  .getElementById("downloadButton")
+  .addEventListener("click", downloadCSV);
+
+// barchart
+function renderBarChart() {
+  // Holen Sie sich das Canvas-Element und seinen Kontext
+  const ctx = document.getElementById("emissionChart").getContext("2d");
+
+  // Prüfen, ob bereits ein Diagramm existiert und dieses zerstören
+  if (window.myChart) {
+    window.myChart.destroy();
+  }
+
+  // Daten für das Diagramm extrahieren
+  const labels = filteredData.map((item) => item.country);
+  const emissionValues = filteredData.map((item) => item.emission);
+
+  // Erstellen eines neuen Diagramms
+  window.myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Emissionen",
+          data: emissionValues,
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
+
+// Call the renderBarChart function to draw the chart when the page loads.
+renderBarChart();
+
+// Hinzufügen eines Event-Listeners für das Fensterresize-Ereignis
+window.addEventListener("resize", renderBarChart);

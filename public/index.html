@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="de" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CO2 Emissionen Dashboard</title>
-    <link rel="icon" href="path/to/favicon.ico" />
+    <link rel="icon" href="../src/img/favicon-32x32.png" />
     <link rel="stylesheet" href="../src/css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
@@ -31,7 +32,7 @@
     <main>
       <section class="container mt-4">
         <h1>Übersicht über die CO2-Emissionen</h1>
-        <p>Willkommen beim CO2 Emissionen Dashboard...</p>
+        <p>Willkommen beim CO2 Emissionen Dashboard.</p>
 
         <div class="filter-section">
           <label for="filterCountry">Land filtern: </label>
@@ -45,7 +46,9 @@
 
           <button id="resetButton">Filter zurücksetzen</button>
         </div>
-        <button class="download-button" id="downloadButton">Daten herunterladen</button>
+        <button class="download-button" id="downloadButton">
+          Daten herunterladen
+        </button>
 
         <table class="table">
           <thead>
@@ -59,6 +62,11 @@
             <!-- Data rows will be added dynamically here -->
           </tbody>
         </table>
+      </section>
+
+      <section class="chart-section mt-4">
+        <h2>Vergleich der Emissionswerte</h2>
+        <canvas id="emissionChart"></canvas>
       </section>
     </main>
 
