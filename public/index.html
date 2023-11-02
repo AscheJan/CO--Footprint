@@ -1,3 +1,8 @@
+<!--
+Author: Jan Asche
+Version: 1.6
+Letzte Änderung: 02.11.2023 - code eingerückt
+-->
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
   <head>
@@ -10,7 +15,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
     />
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
@@ -33,12 +37,13 @@
       </nav>
     </header>
 
-    <!-- Main -->
     <main>
-      <section class="container mt-4">
+      <section class="emission-section container mt-4">
         <h1>Übersicht über die CO2-Emissionen</h1>
         <p>Willkommen beim CO2 Emissionen Dashboard.</p>
+      </section>
 
+      <section class="container mt-4">
         <div class="filter-section">
           <label for="filterCountry">
             <i class="fas fa-globe"></i>
@@ -54,14 +59,24 @@
             <i class="fas fa-cloud"></i>
           </label>
           <input type="number" id="filterEmission" placeholder="Emissionen" />
+          <label for="filterYear">
+            <i class="fas fa-calendar-alt"></i>
+          </label>
+          <input
+            type="number"
+            id="filterYear"
+            placeholder="Jahr"
+            min="1900"
+            max="2100"
+          />
 
           <button id="resetButton">
             <i class="fas fa-undo-alt"></i> Filter zurücksetzen
           </button>
+          <button class="download-button" id="downloadButton">
+            <i class="fas fa-download"></i>
+          </button>
         </div>
-        <button class="download-button" id="downloadButton">
-          Daten herunterladen
-        </button>
 
         <table class="table">
           <thead>
@@ -69,21 +84,32 @@
               <th id="sortCountry">Land</th>
               <th id="sortCompany">Unternehmen</th>
               <th id="sortEmission">Emission</th>
+              <th id="sortYear">Jahr</th>
             </tr>
           </thead>
           <tbody id="dataBody">
-            <!-- Data rows will be added dynamically here -->
+            <!-- Die Datenzeilen werden hier dynamisch hinzugefügt -->
           </tbody>
         </table>
+        <div id="paginationControls" class="mt-3">
+          <span id="pageInfo">Anzeige von Seite 1 von 1.</span>
+          <button id="prevPage" disabled>Vorherige Seite</button>
+          <button id="nextPage" disabled>Nächste Seite</button>
+          <select id="rowsPerPage">
+            <option value="10">10 Zeilen pro Seite</option>
+            <option value="25" selected>25 Zeilen pro Seite</option>
+            <option value="50">50 Zeilen pro Seite</option>
+          </select>
+        </div>
       </section>
 
       <section class="chart-section mt-4">
         <h2>Vergleich der Emissionswerte</h2>
+
         <canvas id="emissionChart"></canvas>
       </section>
     </main>
 
-    <!-- Footer -->
     <footer>
       <div class="footer-content">
         <p>&copy; 2023 CO2 Emissionen Dashboard</p>
